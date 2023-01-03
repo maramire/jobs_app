@@ -1,0 +1,11 @@
+<img src="<%= @applicant.logo %>" alt="">
+<h1>
+  Nombre <%= "#{@applicant.first_name} #{@applicant.last_name}" %>
+</h1>
+<p>Género: <%= @applicant.genre %> </p>
+<p>Cargo Actual: <%= @applicant.job_title %> </p>
+<p>Descripción: <%= @applicant.description %> </p>
+<p>Dirección: <%= "#{@applicant.address}, #{@applicant.country}"%> </p>
+<p>Salario Esperado: <%= "#{@applicant.expected_salary} #{@applicant.currency}" %> </p>
+
+

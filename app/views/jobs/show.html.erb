@@ -1,0 +1,21 @@
+<p>
+  Quedan <%= (@job.expiration_date.to_date - @job.publication_date.to_date).to_i %> días para postular!
+</p>
+<p>
+  Nro de Vacantes: <%= @job.vacant_number %>
+</p>
+<h1>
+  <%= @job.title %>
+</h1>
+<h4>
+  Empresa: <%= @job.company.name %>
+</h4>
+<p>
+  Ubicación: <%= @job.location %>
+</p>
+<p>
+  <%= @job.description %>
+</p>
+<h4>
+  Salario: <%= @job.salary %> <%= @job.currency %>
+</h4>

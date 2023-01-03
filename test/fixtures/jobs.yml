@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  description: MyText
+  salary: 1
+  currency: MyString
+  publication_date: 2023-01-03 13:13:51
+  expiration_date: 2023-01-03 13:13:51
+  minimum_experience: 1
+  maximum_experience: 1
+  is_inclusive: false
+  vacant_number: 1
+  location: MyText
+  company: one
+
+two:
+  title: MyText
+  description: MyText
+  salary: 1
+  currency: MyString
+  publication_date: 2023-01-03 13:13:51
+  expiration_date: 2023-01-03 13:13:51
+  minimum_experience: 1
+  maximum_experience: 1
+  is_inclusive: false
+  vacant_number: 1
+  location: MyText
+  company: two
