@@ -1,0 +1,45 @@
+<h1>Create Job!</h1>
+
+<%= form_with model: @job do |form| %>
+  <div class="field">
+    <%= form.label :title %><br />
+    <%= form.text_field :title, placeholder: "Give your job a title!", size: "69" %>
+  </div>
+  <div class="field">
+    <%= form.label :description %><br />
+    <%= form.text_area :description, placeholder: "Write the job requirements here!", size: "60x10" %>
+  </div>
+  <div class="field">
+    <%= form.label :salary %><br />
+    <%= form.number_field :salary, step: 10000, value: 0 %>
+  </div>
+  <div class="field">
+    <%= form.label :publication_date %><br />
+    <%= form.date_field :publication_date %>
+  </div>
+  <div class="field">
+    <%= form.label :expiration_date %><br />
+    <%= form.date_field :expiration_date %>
+  </div>
+  <div class="field">
+    <%= form.label :minimum_experience %> (years)<br />
+    <%= form.number_field :minimum_experience, step: 0.5, value: 0 %>
+  </div>
+  <div class="field">
+    <%= form.label :maximum_experience %> (years)<br />
+    <%= form.number_field :maximum_experience, step: 0.5, value: 0 %>
+  </div>
+  <div class="field">
+    <%= form.label :is_inclusive %><br />
+    <%= form.check_box :is_inclusive, value: false %>
+  </div>
+  <div class="field">
+    <%= form.label :vacant_number %><br />
+    <%= form.number_field :vacant_number, step: 1, value: 1 %>
+  </div>
+   <div class="field">
+    <%= form.label :location %><br />
+    <%= form.text_field :location, placeholder: "Set Job Location Here!", size: "69" %>
+  </div>
+  <%= form.submit %>
+<% end %>

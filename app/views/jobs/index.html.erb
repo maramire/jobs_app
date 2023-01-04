@@ -1,6 +1,11 @@
-<h1>Jobs !</h1>
-
-<ul>
+<% if current_user %>
+  <% if current_user.applicant? %>
+    <h1>Job Offers!</h1>
+  <% elsif current_user.company? %>
+    <h1>My Jobs!</h1>
+  <% end %>
+  
+  <ul>
   <% @jobs.each do |job| %>
     <li>
       <p>
@@ -8,4 +13,14 @@
       </p>
     </li>
   <% end %>
-</ul>
+  <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+  <% if current_user.company? %>
+    <%= link_to 'Create Job', new_job_path %>
+  <% end %>
+ </ul>
+<% else %>
+  <%= link_to "Sign Up!", new_user_registration_path %>
+  <%= link_to "Login", new_user_session_path %>
+<% end %>
+
+

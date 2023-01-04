@@ -30,3 +30,5 @@ group :development do
   gem "rack-livereload", group: :development
 end
 
+
+gem "devise", "~> 4.8"

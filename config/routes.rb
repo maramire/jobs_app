@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
   
   resources :jobs
-
-  resources :companies do
-    resources :jobs
-  end
-  
+  resources :companies 
   resources :applicants do
     resources :job_applications
   end
