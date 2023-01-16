@@ -1,0 +1,16 @@
+<h1>Apply Job!</h1>
+<%= form_with model: @job_application do |form| %>
+  <%= form.hidden_field :applicant_id, :value => current_user.applicant.id %>
+  <%= form.hidden_field :job_id, :value => params[:job_id] %>
+  <h4>Questions (max. 3)</h4>
+  <%= form.fields_for :answers do |q| %>
+    <div class="field">
+      <%= q.label q.object.question.title %>
+    </div>
+    <div class="field">
+      <%= q.hidden_field :question_id, :value => q.object.question.id %>
+      <%= q.text_field :answer_text, :size => 50 %>
+    </div>
+  <% end -%>
+  <%= form.submit "Apply" %>
+<% end %>

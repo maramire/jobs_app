@@ -1,4 +1,4 @@
-<h1>Edit Applicant Info.</h1>
+<h1>Complete Applicant Info.</h1>
 
 <%= form_with model: @applicant do |form| %>
   <div class="field">
@@ -47,7 +47,7 @@
   </div>
   <div class="field">
     <%= form.label :expected_salary %><br />
-    <%= form.number_field :expected_salary, step: 10000 %>
+    <%= form.number_field :expected_salary, step: 10000, value: 0 %>
   </div>
   <div class="field">
     <%= form.label :currency %><br />

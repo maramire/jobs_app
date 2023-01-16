@@ -41,5 +41,12 @@
     <%= form.label :location %><br />
     <%= form.text_field :location, placeholder: "Set Job Location Here!", size: "69" %>
   </div>
+  <h4>Questions (max. 3)</h4>
+  <%= form.fields_for :questions do |q| %>
+    <p>
+      <%= q.label "Question #{q.index + 1}" %>
+      <%= q.text_field :title, :size => 50 %>
+    </p>
+  <% end -%>
   <%= form.submit %>
 <% end %>

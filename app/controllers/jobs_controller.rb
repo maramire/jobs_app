@@ -1,11 +1,12 @@
 class JobsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :check_profile_completed
+
   def index
     if current_user.applicant?
       @jobs = Job.all
     elsif current_user.company?
       @company = Company.where(user: current_user).first
-      @jobs = Job.where(company: @company )      
+      @jobs = Job.where(company: @company )    
     end
   end
 
@@ -31,6 +32,9 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
+    3.times do 
+      @job.questions.build
+    end
   end
 
   def show
@@ -52,6 +56,24 @@ class JobsController < ApplicationController
       :is_inclusive,
       :vacant_number,
       :location,
+      questions_attributes: [:title]
     )
+  end
+
+  def testing
+    if current_user
+      if current_user.company?
+        @company = Company.where(user: current_user).first
+        if (!@company)
+          redirect_to new_company_url
+        end
+      end
+      if current_user.applicant?
+        @applicant = Applicant.where(user: current_user).first
+        if (!@applicant)
+          redirect_to new_applicant_url
+        end
+      end
+    end
   end
 end

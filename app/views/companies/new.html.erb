@@ -1,4 +1,4 @@
-<h1>Edit Company Info!</h1>
+<h1>Complete Company Info!</h1>
 
 <%= form_with model: @company do |form| %>
   <div class="field">
@@ -9,5 +9,6 @@
     <%= form.label :logo %><br />
     <%= form.text_field :logo, placeholder: "Logo url!", size: "69"%>
   </div>
+
   <%= form.submit %>
 <% end %>

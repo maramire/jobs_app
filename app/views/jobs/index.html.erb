@@ -1,7 +1,9 @@
 <% if current_user %>
   <% if current_user.applicant? %>
+    <%= link_to "My Profile!", applicant_path(:id => current_user.applicant) %>
     <h1>Job Offers!</h1>
   <% elsif current_user.company? %>
+    <%= link_to "My Company!", company_path(:id => current_user.company) %>
     <h1>My Jobs!</h1>
   <% end %>
   

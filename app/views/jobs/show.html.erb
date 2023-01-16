@@ -1,5 +1,5 @@
 <p>
-  Quedan <%= (@job.expiration_date.to_date - @job.publication_date.to_date).to_i %> días para postular!
+  Quedan <%= (@job.expiration_date.to_date - DateTime.now.to_date).to_i %> días para postular!
 </p>
 <p>
   Nro de Vacantes: <%= @job.vacant_number %>
@@ -20,4 +20,22 @@
   Salario: <%= @job.salary %> <%= @job.currency %>
 </h4>
 
-<button type="submit">Postular</button>
+<% if current_user.applicant? %>
+  <% if (application = JobApplication.where(job: @job, applicant: current_user.applicant).first) %>
+    <%= button_to "Remove Application", job_job_application_path(@job), method: "delete" %></td>
+  <% else %>
+    <%= link_to "Apply", new_job_job_application_path(@job) %></td>
+  <% end %>
+<% elsif current_user.company? %>
+  <table>
+    <tr> <th> Applicants </th> </tr>
+    <% @job.job_applications.each do |application| %>
+      <tr> <td> <%= link_to application.applicant.fullname, application.applicant %> </td> </tr>
+    <% end %>
+  </table>
+<% end %>
+<p><%= notice %></p>
+
+
+
+
