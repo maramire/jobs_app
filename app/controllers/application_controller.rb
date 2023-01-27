@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   # set new fields for devise sign up
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+  before_action :set_query
+
+  def set_query
+    @query = Job.ransack(params[:q])
+  end
 
   protected
   def configure_permitted_parameters

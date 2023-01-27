@@ -1,2 +1,11 @@
-<h1>JobApplications#show</h1>
-<p>Find me in app/views/job_applications/show.html.erb</p>
+<h1>Application!</h1>
+<p>Applicant:<%= link_to @job_application.applicant.fullname, @job_application.applicant %></p>
+<h2>Answers</h2>
+<ol>
+<% @job_application.answers.each do |answer| %>
+  <li>
+    <h3><%= answer.question.title %></h3>
+    <%= answer.answer_text %>
+  </li>
+<% end %>
+</ol>

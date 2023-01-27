@@ -3,10 +3,10 @@ class JobsController < ApplicationController
 
   def index
     if current_user.applicant?
-      @jobs = Job.all
+      @pagy, @jobs = pagy(Job.all, items: 10)
     elsif current_user.company?
       @company = Company.where(user: current_user).first
-      @jobs = Job.where(company: @company )    
+      @pagy, @jobs = pagy(Job.where(company: @company ), items: 10)
     end
   end
 

@@ -32,3 +32,11 @@ end
 
 
 gem "devise", "~> 4.8"
+
+gem "ransack", "~> 3.2"
+
+gem "pagy", "~> 6.0"
+
+gem "importmap-rails", "~> 1.1"
+
+gem "tailwindcss-rails", "~> 2.0"

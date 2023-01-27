@@ -44,6 +44,8 @@ class JobApplicationsController < ApplicationController
   end
 
   def show
+    @job = Job.find(params[:job_id])
+    @job_application = JobApplication.find(params[:id])
   end
 
   private

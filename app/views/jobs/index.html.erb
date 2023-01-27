@@ -1,28 +1,35 @@
-<% if current_user %>
-  <% if current_user.applicant? %>
-    <%= link_to "My Profile!", applicant_path(:id => current_user.applicant) %>
-    <h1>Job Offers!</h1>
-  <% elsif current_user.company? %>
-    <%= link_to "My Company!", company_path(:id => current_user.company) %>
-    <h1>My Jobs!</h1>
+<div class="flex items-center">
+  <% if current_user.company? %>
+    <h1 class="text-white p-6 text-2xl">Company Jobs</h1>
+    <%= button_to 'Create Job', new_job_path, method: :get, class:"p-2 rounded-full bg-green-500 text-white " %>
+  <% else %>
+    <h1 class="text-white p-6 text-2xl">Job Offers</h1>
   <% end %>
-  
-  <ul>
+</div>
+<section class="grid h-screen place-items-center p-6">
+<% if current_user %>
+  <ul class="w-3/6">
   <% @jobs.each do |job| %>
-    <li>
-      <p>
-        <%= link_to job.title, job %>
-      </p>
+    <li class="mb-3">
+      <%= link_to job_path(job), :class=>"block p-6 border rounded-lg shadow bg-gray-800 border-gray-700 hover:bg-gray-700"  do %>
+        <img src="<%= job.company.logo %>" alt="" class="inline w-8 h-8 mb-2 text-gray-400"> 
+        <span class="text-white text-xs">
+          <%= job.company.name %>
+        </span>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+          <%= job.title %>
+        </h5>
+        <p class="font-normal text-gray-400 break-all">
+          <%= job.description.truncate(140) %>
+        </p>
+      <% end %>
     </li>
   <% end %>
-  <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
-  <% if current_user.company? %>
-    <%= link_to 'Create Job', new_job_path %>
-  <% end %>
+  
  </ul>
-<% else %>
-  <%= link_to "Sign Up!", new_user_registration_path %>
-  <%= link_to "Login", new_user_session_path %>
 <% end %>
-
+<div class="my-2 p-6">
+  <%== pagy_nav(@pagy) %>
+</div>
+</section>
 

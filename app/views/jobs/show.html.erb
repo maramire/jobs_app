@@ -30,11 +30,10 @@
   <table>
     <tr> <th> Applicants </th> </tr>
     <% @job.job_applications.each do |application| %>
-      <tr> <td> <%= link_to application.applicant.fullname, application.applicant %> </td> </tr>
+      <tr> <td> <%= link_to "#{application.applicant.fullname} application.", job_job_application_path(@job,application) %> </td> </tr>
     <% end %>
   </table>
 <% end %>
-<p><%= notice %></p>
 
 
 

@@ -1,35 +1,57 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :role %><br />
-    <%= f.select :role, [["Applicant", 'applicant'], ["Company",'company']] %>
-
+<section class="bg-gray-900">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-white">
+          <img class="w-8 h-8 mr-2" src="https://icon-library.com/images/employment-icon/employment-icon-1.jpg" alt="logo">
+          Sign Up    
+      </a>
+      <div class="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                <div class="flex flex-col space-y-4">
+                <div>
+                      <%= f.label :role, class: "block text-sm font-medium text-white mb-2" %>
+                      <select id="role" class="border  text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-green-500 focus:border-green-500">
+                        <option selected>Choose a role</option>
+                        <option value="applicant">Applicant</option>
+                        <option value="company">Company</option>
+                      </select>
+                  </div>
+                  <div>
+                      <%= f.label :email, class: "block text-sm font-medium text-white mb-2" %>
+                      <%= f.email_field :email, autofocus: true, autocomplete: "email" ,  placeholder: "anything@domain.com", class: 'border sm:text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-green-500 focus:border-green-500' %>
+                  </div>
+                  <div>
+                      <%= f.label :password, class: "block text-sm font-medium text-white mb-2" %>
+                      <% if @minimum_password_length %>
+                        <em class="text-xs text-white">(<%= @minimum_password_length %> characters minimum)</em>
+                        <% end %><br />
+                      <%= f.password_field :password, placeholder: "••••••••", autocomplete: "new-password", class: "border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-green-500 focus:border-green-500" %>
+                  </div>
+                  <div>
+                      <%= f.label :password_confirmation, class: "block text-sm font-medium text-white mb-2" %>
+                      <%= f.password_field :password_confirmation, placeholder: "••••••••", autocomplete: "new-password", class: "border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-green-500 focus:border-green-500" %>
+                  </div>
+                  <div class="flex items-center justify-between">
+                      <% if devise_mapping.rememberable? %>
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                              <%= f.check_box :remember_me, class: "w-4 h-4 border rounded focus:ring-3 bg-gray-700 border-green-600 focus:ring-green-600 ring-offset-gray-800" %>
+                            </div>
+                            <div class="ml-3 text-sm">
+                              <%= f.label :remember_me, class: "text-gray-300" %>
+                            </div>
+                        </div>
+                      <% end %>
+                  </div>
+                  <%= f.button "Sign Up", class: "w-full bg-green-500 self-end text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-green-900" %>
+                  <p class="text-sm font-light text-gray-500 text-gray-400">
+                      Do you have an account?   <%= link_to "Log In", new_session_path(resource_name), class: "font-medium hover:underline text-primary-500" %> 
+                  </p>
+                </div>
+              <% end %>
+          </div>
+      </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>
