@@ -1,16 +1,24 @@
-<h1>Apply Job!</h1>
-<%= form_with model: @job_application do |form| %>
-  <%= form.hidden_field :applicant_id, :value => current_user.applicant.id %>
-  <%= form.hidden_field :job_id, :value => params[:job_id] %>
-  <h4>Questions (max. 3)</h4>
-  <%= form.fields_for :answers do |q| %>
-    <div class="field">
-      <%= q.label q.object.question.title %>
-    </div>
-    <div class="field">
-      <%= q.hidden_field :question_id, :value => q.object.question.id %>
-      <%= q.text_field :answer_text, :size => 50 %>
-    </div>
-  <% end -%>
-  <%= form.submit "Apply" %>
-<% end %>
+<section class="grid h-screen place-items-center p-6">
+  <div class="flex flex-col items-center p-6">
+    <h1 class="text-5xl font-extrabold dark:text-white break-words">Applying to<small class="ml-2 font-semibold text-gray-500 dark:text-gray-400"><%= @job_application.job.title %></small></h1>
+  </div>
+  <h3 class="text-3xl font-bold dark:text-white">Questions</h3>
+
+  <%= form_with model: @job_application do |form| %>
+    <%= form.hidden_field :applicant_id, :value => current_user.applicant.id %>
+    <%= form.hidden_field :job_id, :value => params[:job_id] %>
+    <%= form.fields_for :answers do |q| %>
+      <div class="mb-6">
+        <%= q.label q.object.question.title, class:"mb-2 block text-sm font-medium text-white" %>
+        <%= q.hidden_field :question_id, :value => q.object.question.id %>
+        <%= q.text_field :answer_text, :size => 50, placeholder: "Write your answer!", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+    <% end -%>
+    <%= form.button type:"submit", class:"mb-4 border border-green-700 focus:ring-4 focus:outline-none font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center border-green-500 text-green-500 hover:text-white hover:bg-green-900 focus:ring-green-800" do %>
+      <svg aria-hidden="true" class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <span>Apply</span>
+    <% end %>
+  <% end %>
+</section>

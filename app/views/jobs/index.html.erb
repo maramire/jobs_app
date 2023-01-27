@@ -1,35 +1,40 @@
-<div class="flex items-center">
-  <% if current_user.company? %>
-    <h1 class="text-white p-6 text-2xl">Company Jobs</h1>
-    <%= button_to 'Create Job', new_job_path, method: :get, class:"p-2 rounded-full bg-green-500 text-white " %>
-  <% else %>
-    <h1 class="text-white p-6 text-2xl">Job Offers</h1>
-  <% end %>
-</div>
-<section class="grid h-screen place-items-center p-6">
-<% if current_user %>
-  <ul class="w-3/6">
-  <% @jobs.each do |job| %>
-    <li class="mb-3">
-      <%= link_to job_path(job), :class=>"block p-6 border rounded-lg shadow bg-gray-800 border-gray-700 hover:bg-gray-700"  do %>
-        <img src="<%= job.company.logo %>" alt="" class="inline w-8 h-8 mb-2 text-gray-400"> 
-        <span class="text-white text-xs">
-          <%= job.company.name %>
-        </span>
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
-          <%= job.title %>
-        </h5>
-        <p class="font-normal text-gray-400 break-all">
-          <%= job.description.truncate(140) %>
-        </p>
+<section class="flex flex-col m-auto lg:w-3/6 sm:w-3/6 md:w-3/6 space-y-4 mt-5 p-2">
+  <div class="flex flex-col items-center p-6 space-y-4">
+    <% if current_user.company? %>
+      <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-white">Company Jobs</h1>
+      <%= button_to new_job_path, method: "get", class:"border border-green-700 focus:ring-4 focus:outline-none font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center border-green-500 text-green-500 hover:text-white hover:bg-green-900 focus:ring-green-800" do %>
+        <svg aria-hidden="true" class="w-5 h-5 mr-1"  fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>Create Job</span>
       <% end %>
-    </li>
+    <% else %>
+      <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-white">Job Offers</h1>
+    <% end %>
+  </div>
+  <% if current_user %>
+    <ul class="w-full">
+    <% @jobs.each do |job| %>
+      <li class="mb-3">
+        <%= link_to job_path(job), :class=>"block p-6 border rounded-lg shadow bg-gray-800 border-gray-700 hover:bg-gray-700"  do %>
+          <img src="<%= job.company.logo %>" alt="" class="inline w-8 h-8 mb-2 text-gray-400"> 
+          <span class="text-white text-xs">
+            <%= job.company.name %>
+          </span>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+            <%= job.title %>
+          </h5>
+          <p class="font-normal text-gray-400 break-words">
+            <%= job.description.truncate(140) %>
+          </p>
+        <% end %>
+      </li>
+    <% end %>
+    
+  </ul>
   <% end %>
-  
- </ul>
-<% end %>
-<div class="my-2 p-6">
-  <%== pagy_nav(@pagy) %>
-</div>
+  <div class="my-2 p-6">
+    <%== pagy_nav(@pagy) %>
+  </div>
 </section>
 

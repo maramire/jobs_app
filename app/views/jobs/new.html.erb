@@ -1,52 +1,69 @@
-<h1>Create Job!</h1>
+<section class="grid h-screen place-items-center p-6">
+  <div class="flex flex-col items-center p-6">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-white">Create Job</h1>
+  </div>
+  <%= form_with model: @job do |form| %>
+    <div class="mb-6">
+      <%= form.label :title, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.text_field :title, placeholder: "Give your job a title!", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-6">
+      <%= form.label :description, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.text_area :description, placeholder: "Write the job requirements here!", size: "60x10", class:"block w-full p-4 border rounded-lg sm:text-md bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-6">
+      <%= form.label :salary, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.number_field :salary, step: 10000, value: 0, class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"%>
+    </div>
+    <div class="flex space-x-4">    
+      <div class="mb-6">
+        <%= form.label :publication_date, class:"mb-2 block text-sm font-medium text-white" %>
+        <%= form.date_field :publication_date, class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+      <div class="mb-6">
+        <%= form.label :expiration_date, class:"mb-2 block text-sm font-medium text-white" %>
+        <%= form.date_field :expiration_date, class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+    </div>
+    <div class="flex space-x-4">
+      <div class="mb-6">
+        <%= form.label "Minimum experience (years)", class:"mb-2 block text-sm font-medium text-white" %> 
+        <%= form.number_field :minimum_experience, step: 0.5, value: 0, class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+      <div class="mb-6">
+        <%= form.label "Maximum experience (years)", class:"mb-2 block text-sm font-medium text-white" %> 
+        <%= form.number_field :maximum_experience, step: 0.5, value: 0, class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+    </div>
+    <div class="mb-6">
+      <%= form.label :is_inclusive, class:"mb-2 text-sm font-medium text-white" %>
+      <%= form.check_box :is_inclusive, value: false, class:"w-4 h-4 rounded focus:ring-blue-600 ring-offset-gray-800 focus:ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600" %>
+    </div>
+    <div class="mb-6">
+      <%= form.label "Number of vacants", class:"mb-2 text-sm font-medium text-white"  %>
+      <%= form.number_field :vacant_number, step: 1, value: 1, class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-6">
+      <%= form.label :location, class:"mb-2 text-sm font-medium text-white" %>
+      <%= form.text_field :location, placeholder: "Set job location!", size: "69", class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <h3 class="text-3xl font-bold dark:text-white mb-4">Questions (max. 3)</h3>
+    <%= form.fields_for :questions do |q| %>
+      <div class="mb-6">
+        <%= q.label "Question #{q.index + 1}", class:"mb-2 block text-sm font-medium text-white" %>
+        <%= q.text_field :title, :size => 69, class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+    <% end -%>
+    <%= form.button type:"submit", class:"mb-4 border border-green-700 focus:ring-4 focus:outline-none font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center border-green-500 text-green-500 hover:text-white hover:bg-green-900 focus:ring-green-800" do %>
+      <svg aria-hidden="true" class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <span>Create</span>
+    <% end %>
+  <% end %>
+</section>
 
-<%= form_with model: @job do |form| %>
-  <div class="field">
-    <%= form.label :title %><br />
-    <%= form.text_field :title, placeholder: "Give your job a title!", size: "69" %>
-  </div>
-  <div class="field">
-    <%= form.label :description %><br />
-    <%= form.text_area :description, placeholder: "Write the job requirements here!", size: "60x10" %>
-  </div>
-  <div class="field">
-    <%= form.label :salary %><br />
-    <%= form.number_field :salary, step: 10000, value: 0 %>
-  </div>
-  <div class="field">
-    <%= form.label :publication_date %><br />
-    <%= form.date_field :publication_date %>
-  </div>
-  <div class="field">
-    <%= form.label :expiration_date %><br />
-    <%= form.date_field :expiration_date %>
-  </div>
-  <div class="field">
-    <%= form.label :minimum_experience %> (years)<br />
-    <%= form.number_field :minimum_experience, step: 0.5, value: 0 %>
-  </div>
-  <div class="field">
-    <%= form.label :maximum_experience %> (years)<br />
-    <%= form.number_field :maximum_experience, step: 0.5, value: 0 %>
-  </div>
-  <div class="field">
-    <%= form.label :is_inclusive %><br />
-    <%= form.check_box :is_inclusive, value: false %>
-  </div>
-  <div class="field">
-    <%= form.label :vacant_number %><br />
-    <%= form.number_field :vacant_number, step: 1, value: 1 %>
-  </div>
-   <div class="field">
-    <%= form.label :location %><br />
-    <%= form.text_field :location, placeholder: "Set Job Location Here!", size: "69" %>
-  </div>
-  <h4>Questions (max. 3)</h4>
-  <%= form.fields_for :questions do |q| %>
-    <p>
-      <%= q.label "Question #{q.index + 1}" %>
-      <%= q.text_field :title, :size => 50 %>
-    </p>
-  <% end -%>
-  <%= form.submit %>
-<% end %>
+
+
+
+
