@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :job_applications, only: [:index, :create] 
   
   resources :jobs do
-    resources :job_applications
+    resources :job_applications, only: [:show, :new, :destroy] 
   end
   resources :companies 
   resources :applicants do
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
   
   root "jobs#index"
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

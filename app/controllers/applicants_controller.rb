@@ -50,7 +50,7 @@ class ApplicantsController < ApplicationController
       :country,
       :address,
       :genre,
-      :logo,
+      :photo,
       :is_disabled_person,
       :expected_salary,
       :currency

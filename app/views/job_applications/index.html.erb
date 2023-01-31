@@ -1,10 +1,31 @@
-<h1>Job Applications</h1>
-<ul>
-  <% @applications.each do |application| %>
-    <li>
-      <p>
-        <%= link_to application.job.title, application.job %>
-      </p>
-    </li>
+<section class="flex h-5/6   flex-col m-auto lg:w-3/6 sm:w-3/6 md:w-3/6 space-y-4 mt-5 p-2">
+  <div class="flex flex-col items-center p-6 space-y-4">
+      <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-white">My Applications</h1>
+  </div>
+  <% if @applications.empty? %>
+    <p class="mb-3 font-light text-gray-400 break-words whitespace-pre-line">There's no applications.</p>
+  <% else %>
+    <ul class="w-full">
+      <% @applications.each do |application| %>
+        <li class="mb-3">
+          <%= link_to  job_path(application.job), :class=>"block p-6 border rounded-lg shadow bg-gray-800 border-gray-700 hover:bg-gray-700"  do %>
+            <img src="<%= application.job.company.logo %>" alt="" class="inline w-8 h-8 mb-2 text-gray-400"> 
+            <span class="text-white text-xs">
+              <%= application.job.company.name %>
+            </span>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+              <%= application.job.title %>
+            </h5>
+            <p class="font-normal text-gray-400 break-words mb-3">
+              <%= application.job.description.truncate(140) %>
+            </p>
+            <p class="text-white text-xs">
+              Creado: <%= application.job.created_at.in_time_zone("Santiago").strftime("%d/%m/%Y %T") %>
+            </p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>
+</section>
+

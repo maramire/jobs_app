@@ -3,10 +3,10 @@ class JobsController < ApplicationController
 
   def index
     if current_user.applicant?
-      @pagy, @jobs = pagy(Job.all.order(created_at: :desc), items: 10)
+      @pagy, @jobs = pagy(Job.where(is_active: true).order(created_at: :desc), items: 10)
     elsif current_user.company?
       @company = Company.where(user: current_user).first
-      @pagy, @jobs = pagy(Job.where(company: @company).order(created_at: :desc), items: 10)
+      @pagy, @jobs = pagy(Job.where(company: @company, is_active: true).order(created_at: :desc), items: 10)
     end
   end
 
@@ -28,6 +28,13 @@ class JobsController < ApplicationController
   end
 
   def destroy
+    @job = Job.find(params[:id])
+    @job.is_active = false
+    if @job.save
+      redirect_to jobs_path, notice: 'Job was successfully created.'
+    else
+      render :show
+    end
   end
 
   def new

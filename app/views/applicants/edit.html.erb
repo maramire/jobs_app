@@ -1,58 +1,65 @@
-<h1>Edit Applicant Info.</h1>
-
-<%= form_with model: @applicant do |form| %>
-  <div class="field">
-    <%= form.label :first_name %><br />
-    <%= form.text_field :first_name, placeholder: "Write your first name.", size: "69" %>
+<section class="flex h-5/6   flex-col m-auto lg:w-3/6 sm:w-3/6 md:w-3/6 space-y-4 mt-5 p-2 text-white">
+  <div class="flex flex-col items-center p-6 space-y-4">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-white">Edit Profile</h1>
   </div>
-  <div class="field">
-    <%= form.label :last_name %><br />
-    <%= form.text_field :last_name, placeholder: "Write your last name.", size: "69" %>
-  </div>
-  <div class="field">
-    <%= form.label :logo, "Photo Url" %><br />
-    <%= form.text_field :logo, placeholder: "Your photo", size: "69" %>
-  </div>
-  <div class="field">
-    <%= form.label :birth_date %><br />
-    <%= form.date_field :birth_date, placeholder: "Birth Date"%>
-  </div>
-  <div class="field">
-    <%= form.label :is_working %><br />
-    <%= form.check_box :is_working, value: false %>
-  </div>
-  <div class="field">
-    <%= form.label :job_title %><br />
-    <%= form.text_field :job_title, placeholder: "Write your current job or the job you are searching for.", size: "69" %>
-  </div>
-  <div class="field">
-    <%= form.label :description %><br />
-    <%= form.text_field :description, placeholder: "Write a description about you.", size: "69" %>
-  </div>
-  <div class="field">
-    <%= form.label :country %><br />
-    <%= form.text_field :country, placeholder: "Write your country.", size: "69" %>
-  </div>
-  <div class="field">
-    <%= form.label :address %><br />
-    <%= form.text_field :address, placeholder: "Write your address.", size: "69" %>
-  </div>
-  <div class="field">
-    <%= form.label :genre %><br />
-    <%= form.text_field :genre, placeholder: "Write your genre.", size: "69" %>
-  </div>
-  <div class="field">
-    <%= form.label :is_disabled_person %><br />
-    <%= form.check_box :is_disabled_person, value: false %>
-  </div>
-  <div class="field">
-    <%= form.label :expected_salary %><br />
-    <%= form.number_field :expected_salary, step: 10000 %>
-  </div>
-  <div class="field">
-    <%= form.label :currency %><br />
-    <%= form.text_field :currency, placeholder: "Currency.", size: "3" %>
-  </div>
-  <%= form.submit %>
-<% end %>
-<%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+  <%= form_with model: @applicant do |form| %>
+    <div class="mb-2">
+      <%= form.label :first_name, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.text_field :first_name, placeholder: "Write your first name.", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :last_name, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.text_field :last_name, placeholder: "Write your last name.", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :photo, "Photo Url", class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.file_field :photo,  size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :birth_date, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.date_field :birth_date, placeholder: "Birth Date", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"%>
+    </div>
+    <div class="mb-2">
+      <%= form.label :is_working, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.check_box :is_working, value: false, class:"w-4 h-4 rounded focus:ring-blue-600 ring-offset-gray-800 focus:ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :job_title, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.text_field :job_title, placeholder: "Write your current job or the job you are searching for.", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :description, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.text_field :description, placeholder: "Write a description about you.", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="field">
+      <%= form.label :country, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.text_field :country, placeholder: "Write your country.", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :address, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.text_field :address, placeholder: "Write your address.", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :genre, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.text_field :genre, placeholder: "Write your genre.", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :is_disabled_person, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.check_box :is_disabled_person, value: false, class:"w-4 h-4 rounded focus:ring-blue-600 ring-offset-gray-800 focus:ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :expected_salary, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.number_field :expected_salary, step: 10000, class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :currency, class:"mb-2 block text-sm font-medium text-white" %>
+      <%= form.text_field :currency, placeholder: "Currency.", size: "3", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+    <%= form.button type:"submit", class:"mb-4 border border-green-700 focus:ring-4 focus:outline-none font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center border-green-500 text-green-500 hover:text-white hover:bg-green-900 focus:ring-green-800" do %>
+      <svg aria-hidden="true" class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <span>Update</span>
+    <% end %>
+  <% end %>
+</section>

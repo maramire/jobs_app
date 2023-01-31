@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(params[:company])
+    @company = Company.new(company_params)
     @company.user = current_user
     if @company.save
       redirect_to jobs_url
@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
 
   def update
     @company = Company.find(params[:id])
-    if @company.update(params.require(:company).permit(:name, :logo))
+    if @company.update(company_params)
       flash[:success] = "Company successfully updated."
       redirect_to company_url(@company)
     else
@@ -35,5 +35,11 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find(params[:id])
+  end
+
+  private
+
+  def company_params
+    params.require(:company).permit(:name, :photo)
   end
 end

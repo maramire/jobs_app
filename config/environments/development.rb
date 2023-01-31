@@ -62,4 +62,7 @@ Rails.application.configure do
 
   # Rack::LiveReload 
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
+
+  config.active_storage.service = :local
+  config.active_storage.variant_processor = :vips
 end

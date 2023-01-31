@@ -1,11 +1,42 @@
-<img src="<%= @applicant.logo %>" alt="">
-<h1>
-  Nombre <%= "#{@applicant.first_name} #{@applicant.last_name}" %>
-</h1>
-<p>Género: <%= @applicant.genre %> </p>
-<p>Cargo Actual: <%= @applicant.job_title %> </p>
-<p>Descripción: <%= @applicant.description %> </p>
-<p>Dirección: <%= "#{@applicant.address}, #{@applicant.country}"%> </p>
-<p>Salario Esperado: <%= "#{@applicant.expected_salary} #{@applicant.currency}" %> </p>
+<section class="flex h-5/6   flex-col m-auto lg:w-3/6 sm:w-3/6 md:w-3/6 space-y-4 mt-5 p-2 text-white">
+  <div class="flex flex-col items-center p-6 space-y-4">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl">Profile</h1>
+      <img class="rounded-full w-48 h-48 object-cover" src="<%= url_for(@applicant.photo) %>" alt="">
+  </div>
+  <div class="mb-2">
+    <p class="mb-2 block text-sm font-medium text-white">Name</p>
+    <p class="border text-sm rounded-lg w-full block p-2.5 bg-gray-700 border-gray-600 text-white ">
+      <%= "#{@applicant.first_name} #{@applicant.last_name}" %>
+    </p>
+  </div>   
+  <div class="mb-2">
+    <p class="mb-2 block text-sm font-medium text-white">Genre</p>
+    <p class="border text-sm rounded-lg w-full block p-2.5 bg-gray-700 border-gray-600 text-white "><%= @applicant.genre %> </p>
+  </div> 
+  <div class="mb-2">
+    <p class="mb-2 block text-sm font-medium text-white">Job Position</p>
+    <p class="border text-sm rounded-lg w-full block p-2.5 bg-gray-700 border-gray-600 text-white "><%= @applicant.job_title %></p>
+  </div> 
+  <div class="mb-2">
+    <p class="mb-2 block text-sm font-medium text-white">Description</p>
+    <p class="border text-sm rounded-lg w-full block p-2.5 bg-gray-700 border-gray-600 text-white "><%= @applicant.description %></p>
+  </div> 
+  <div class="mb-2">
+    <p class="mb-2 block text-sm font-medium text-white">Address</p>
+    <p class="border text-sm rounded-lg w-full block p-2.5 bg-gray-700 border-gray-600 text-white "><%= "#{@applicant.address}, #{@applicant.country}"%></p>
+  </div> 
+  <div class="mb-2">
+    <p class="mb-2 block text-sm font-medium text-white">Expected Salary</p>
+    <p class="border text-sm rounded-lg w-full block p-2.5 bg-gray-700 border-gray-600 text-white "><%= "#{@applicant.expected_salary} #{@applicant.currency}" %></p>
+  </div> 
+  <% if current_user.applicant? %>
+    <%= button_to edit_applicant_path(:id => current_user.applicant), method: "get", class:"text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 bg-green-600 hover:bg-green-700 focus:ring-green-800" do %>
+      <svg aria-hidden="true" class="w-5 h-5 mr-2 -ml-1"   fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      Edit Profile
+    <% end %>
+  <% end %>
+</section>
 
-<%= link_to "Edit", edit_applicant_path %>
+

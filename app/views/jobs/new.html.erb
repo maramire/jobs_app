@@ -1,15 +1,15 @@
-<section class="grid h-screen place-items-center p-6">
+<section class="flex h-5/6   flex-col m-auto lg:w-3/6 sm:w-3/6 md:w-3/6 space-y-4 mt-5 p-2 text-white">
   <div class="flex flex-col items-center p-6">
     <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-white">Create Job</h1>
   </div>
   <%= form_with model: @job do |form| %>
     <div class="mb-6">
       <%= form.label :title, class:"mb-2 block text-sm font-medium text-white" %>
-      <%= form.text_field :title, placeholder: "Give your job a title!", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+      <%= form.text_field :title, :required => true, placeholder: "Give your job a title!", size: "69", class:"border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
     </div>
     <div class="mb-6">
       <%= form.label :description, class:"mb-2 block text-sm font-medium text-white" %>
-      <%= form.text_area :description, placeholder: "Write the job requirements here!", size: "60x10", class:"block w-full p-4 border rounded-lg sm:text-md bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+      <%= form.text_area :description, :required => true,  placeholder: "Write the job requirements here!", size: "60x10", class:"block w-full p-4 border rounded-lg sm:text-md bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
     </div>
     <div class="mb-6">
       <%= form.label :salary, class:"mb-2 block text-sm font-medium text-white" %>
@@ -18,11 +18,11 @@
     <div class="flex space-x-4">    
       <div class="mb-6">
         <%= form.label :publication_date, class:"mb-2 block text-sm font-medium text-white" %>
-        <%= form.date_field :publication_date, class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+        <%= form.date_field :publication_date,  :value => Time.now.strftime('%Y-%m-%d') , class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
       </div>
       <div class="mb-6">
         <%= form.label :expiration_date, class:"mb-2 block text-sm font-medium text-white" %>
-        <%= form.date_field :expiration_date, class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
+        <%= form.date_field :expiration_date, :required => true, class:"border text-sm rounded-lg  block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" %>
       </div>
     </div>
     <div class="flex space-x-4">

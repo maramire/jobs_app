@@ -3,6 +3,7 @@
   <head>
     <title>jobsapp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="https://icon-library.com/images/employment-icon/employment-icon-1.jpg">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -11,8 +12,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-gray-900">
-    <%= render "layouts/navbar" %>
+  <%= render "layouts/navbar" %>
+  <body class="bg-gray-900 min-h-screen flex flex-col">
     <%= yield %>
   </body>
+
+  <%= render "layouts/footer" %>
 </html>

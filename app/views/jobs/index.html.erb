@@ -1,4 +1,4 @@
-<section class="flex flex-col m-auto lg:w-3/6 sm:w-3/6 md:w-3/6 space-y-4 mt-5 p-2">
+<section class="flex h-5/6 flex-col m-auto lg:w-3/6 sm:w-3/6 md:w-3/6 space-y-4 mt-5 p-2">
   <div class="flex flex-col items-center p-6 space-y-4">
     <% if current_user.company? %>
       <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-white">Company Jobs</h1>
@@ -14,24 +14,28 @@
   </div>
   <% if current_user %>
     <ul class="w-full">
-    <% @jobs.each do |job| %>
-      <li class="mb-3">
-        <%= link_to job_path(job), :class=>"block p-6 border rounded-lg shadow bg-gray-800 border-gray-700 hover:bg-gray-700"  do %>
-          <img src="<%= job.company.logo %>" alt="" class="inline w-8 h-8 mb-2 text-gray-400"> 
-          <span class="text-white text-xs">
-            <%= job.company.name %>
-          </span>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
-            <%= job.title %>
-          </h5>
-          <p class="font-normal text-gray-400 break-words">
-            <%= job.description.truncate(140) %>
-          </p>
-        <% end %>
-      </li>
-    <% end %>
-    
-  </ul>
+      <% @jobs.each do |job| %>
+        <li class="mb-3">
+          <%= link_to job_path(job), :class=>"block p-6 border rounded-lg shadow bg-gray-800 border-gray-700 hover:bg-gray-700"  do %>
+            <div class="flex items-center justify-between text-gray-400">            
+              <img src="<%= job.company.logo %>" alt="" class="inline w-8 h-8 mb-2 text-gray-400"> 
+              <span class="ml-2 text-xs">
+                <%= job.company.name %>
+              </span>
+              <p class=" text-xs ml-auto">
+                Creado: <%= job.created_at.in_time_zone("Santiago").strftime("%d/%m/%Y %T") %>
+              </p>
+            </div>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+              <%= job.title %>
+            </h5>
+            <p class="font-normal text-gray-400 break-words mb-3">
+              <%= job.description.truncate(140) %>
+            </p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
   <div class="my-2 p-6">
     <%== pagy_nav(@pagy) %>
