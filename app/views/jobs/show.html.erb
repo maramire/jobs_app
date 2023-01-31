@@ -9,6 +9,9 @@
       </div>
     </div>  
   <% end %>
+  <p class="text-red-500">
+    <%= "This job is no longer available." if !@job.is_active %>
+  </p>
   <div class="flex items-center space-x-4">
       <img class="w-10 h-10 rounded-full" src="<%= @job.company.logo %>" alt="">
       <div class="font-medium text-white">

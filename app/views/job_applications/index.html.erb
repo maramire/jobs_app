@@ -9,18 +9,23 @@
       <% @applications.each do |application| %>
         <li class="mb-3">
           <%= link_to  job_path(application.job), :class=>"block p-6 border rounded-lg shadow bg-gray-800 border-gray-700 hover:bg-gray-700"  do %>
-            <img src="<%= application.job.company.logo %>" alt="" class="inline w-8 h-8 mb-2 text-gray-400"> 
-            <span class="text-white text-xs">
-              <%= application.job.company.name %>
-            </span>
+            <div class="flex items-center justify-between text-gray-400">            
+              <img src="<%= application.job.company.logo %>" alt="" class="inline w-8 h-8 mb-2 text-gray-400"> 
+              <span class="ml-2 text-xs">
+                <%= application.job.company.name %>
+              </span>
+              <p class=" text-xs ml-auto">
+                Creado: <%= application.job.created_at.in_time_zone("Santiago").strftime("%d/%m/%Y %T") %>
+              </p>
+            </div>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
               <%= application.job.title %>
             </h5>
             <p class="font-normal text-gray-400 break-words mb-3">
               <%= application.job.description.truncate(140) %>
             </p>
-            <p class="text-white text-xs">
-              Creado: <%= application.job.created_at.in_time_zone("Santiago").strftime("%d/%m/%Y %T") %>
+            <p class="text-red-500">
+              <%= "This job is no longer available." if !application.job.is_active %>
             </p>
           <% end %>
         </li>
